@@ -9,10 +9,10 @@ const contactForm = document.getElementById('contactForm');
 const toast = document.getElementById('toast');
 const currentYearSpan = document.getElementById('currentYear');
 
-// State
+
 let isMenuOpen = false;
 
-// Initialize
+
 document.addEventListener('DOMContentLoaded', function() {
     initPreloader();
     initNavigation();
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initWhatsAppTooltip();
 });
 
-// Preloader
+
 function initPreloader() {
     let progress = 0;
     const interval = setInterval(() => {
@@ -42,9 +42,8 @@ function initPreloader() {
     }, 50);
 }
 
-// Navigation
+
 function initNavigation() {
-    // Scroll effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navigation.classList.add('scrolled');
@@ -52,19 +51,17 @@ function initNavigation() {
             navigation.classList.remove('scrolled');
         }
     });
-
-    // Mobile menu toggle
+    
     mobileToggle.addEventListener('click', toggleMobileMenu);
     mobileClose.addEventListener('click', closeMobileMenu);
-
-    // Close mobile menu when clicking outside
+    
     document.addEventListener('click', (e) => {
         if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
             closeMobileMenu();
         }
     });
 
-    // Close mobile menu on escape key
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isMenuOpen) {
             closeMobileMenu();
@@ -84,7 +81,6 @@ function closeMobileMenu() {
     document.body.style.overflow = 'auto';
 }
 
-// Smooth scrolling
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -103,7 +99,7 @@ function scrollToTop() {
     });
 }
 
-// Scroll animations
+
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -118,7 +114,7 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
+    
     const animatedElements = document.querySelectorAll('.project-card, .service-card, .skill-category');
     animatedElements.forEach((el, index) => {
         el.style.animationDelay = `${index * 0.1}s`;
@@ -126,7 +122,6 @@ function initScrollAnimations() {
     });
 }
 
-// Contact form
 function initContactForm() {
     contactForm.addEventListener('submit', handleFormSubmit);
 }
@@ -134,7 +129,7 @@ function initContactForm() {
 function handleFormSubmit(e) {
     e.preventDefault();
     
-    // Get form data
+    
     const formData = new FormData(contactForm);
     const data = {
         name: formData.get('name'),
@@ -142,20 +137,19 @@ function handleFormSubmit(e) {
         message: formData.get('message')
     };
 
-    // Validate form
+    
     if (!data.name || !data.email || !data.message) {
         showToast('Please fill in all required fields', 'error');
         return;
     }
 
-    // Simulate form submission
+    
     showToast('Message sent successfully!', 'success');
     
-    // Reset form
     contactForm.reset();
 }
 
-// Toast notification
+
 function showToast(message, type = 'success') {
     const toastTitle = toast.querySelector('.toast-title');
     const toastDescription = toast.querySelector('.toast-description');
@@ -180,7 +174,6 @@ function showToast(message, type = 'success') {
     }, 4000);
 }
 
-// WhatsApp tooltip
 function initWhatsAppTooltip() {
     const whatsappButton = document.querySelector('.whatsapp-button');
     const tooltip = document.querySelector('.whatsapp-tooltip');
@@ -198,22 +191,22 @@ function initWhatsAppTooltip() {
     }
 }
 
-// Update current year
+
 function updateCurrentYear() {
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 }
 
-// Keyboard navigation
+
 document.addEventListener('keydown', (e) => {
-    // Home key - scroll to top
+    
     if (e.key === 'Home') {
         e.preventDefault();
         scrollToTop();
     }
     
-    // End key - scroll to bottom
+    
     if (e.key === 'End') {
         e.preventDefault();
         window.scrollTo({
@@ -223,7 +216,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Lazy loading for images
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
     
@@ -241,7 +233,7 @@ function initLazyLoading() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Performance monitoring
+
 function initPerformanceMonitoring() {
     // Monitor Core Web Vitals
     if ('web-vital' in window) {
@@ -353,15 +345,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Initialize everything
+
 document.addEventListener('DOMContentLoaded', () => {
     initThemeHandling();
     
-    // Add loading class to body
+    
     document.body.classList.add('loading');
     
-    // Remove loading class after preloader
-    setTimeout(() => {
+       setTimeout(() => {
         document.body.classList.remove('loading');
     }, 3000);
 });
